@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slider Automático</title>
+  <link rel="stylesheet" href="../css/slider.css">
+  <style>
+    /* Estilos específicos para el slider */
+    .slider-container {
+      position: relative;
+      width: 300%;
+      max-width: 3000px;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease;
+      justify-content: center; /* Centra los elementos dentro del contenedor */
+    }
+
+    .slide {
+      width: 300%;
+      display: flex;
+      justify-content: center; /* Centra la imagen dentro del slide */
+    }
+
+    .slide img {
+      max-width: 300%; /* Ajusta el tamaño máximo de la imagen */
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Contenedor del slider -->
+  <div class="slider-container">
+    <!-- Slides de imágenes -->
+    <div class="slider">
+      <div class="slide"><img src="../img/CamaroSS.jpg" alt="Imagen 1">  Camaro SS </div>
+      <div class="slide"><img src="../img/Dodgecharger.jpg" alt="Imagen 2">  Dodge Charger </div>
+      <div class="slide"><img src="../img/MustangGT550.jpg" alt="Imagen 3">  Ford MustangGT550</div>
+      <!-- Agrega más slides si es necesario -->
+    </div>
+  </div>
+
+  <script>
+    // Script JavaScript para el slider automático (igual al anterior)
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slide');
+
+    let counter = 1;
+    const slideWidth = slides[0].clientWidth;
+
+    setInterval(() => {
+      slider.style.transition = 'transform 0.5s ease-in-out';
+      slider.style.transform = `translateX(${-slideWidth * counter}px)`;
+
+      counter++;
+
+      if (counter === slides.length) {
+        setTimeout(() => {
+          slider.style.transition = 'none';
+          slider.style.transform = `translateX(0)`;
+          counter = 1;
+        }, 500);
+      }
+    }, 3000); // Cambia este valor para ajustar la velocidad del slider (en milisegundos)
+  </script>
+
+  <button>
+    <a href="index.html"> Volver a Inicio de sesion </a>
+  </button>
+</body>
+</html>
